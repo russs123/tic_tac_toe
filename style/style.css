@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cellSize: 100px;
+    --markSize: calc(var(--cellSize) * 0.9);
+}
+
+body {
+    background-color: #e0ff57;
+}
+
+.board {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+    border: 1px solid #414141;
+    border-bottom: none;
+    width: var(--cellSize);
+    height: var(--cellSize);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
+    border-right: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none;
+    border-left: none;
+}
+
+.cell.x::before,
+.cell.x::after {
+    content: "";
+    /* Position is important! This is why they don't center properly */
+    position: absolute;
+    height: calc(var(--markSize));
+    width: calc(var(--markSize) * 0.1);
+    background-color: #5542fd;
+}
+
+.cell.x::after {
+    transform: rotate(45deg);
+}
+
+.cell.x::before {
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before {
+    content: "";
+    position: absolute;
+    width: var(--markSize);
+    height: var(--markSize);
+    border-radius: 50%;
+    background-color: #10c80a;
+}
+
+.cell.circle::after {
+    content: "";
+    position: absolute;
+    width: calc(var(--markSize) * 0.8);
+    height: calc(var(--markSize) * 0.8);
+    border-radius: 50%;
+    background-color: #e0ff57;
+}
